@@ -7,11 +7,69 @@ const SecNumAcademy = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState('');
+  const [users, setUsers] = useState([
+    { username: 'admin', password: 'admin123' },
+    { username: 'demo', password: 'demo123' }
+  ]);
+  const [registerData, setRegisterData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
 
   const handleLogin = (e) => {
-    if (e) e.preventDefault();
-    // Connexion réussie même avec des champs vides pour la démo
-    setIsLoggedIn(true);
+    e.preventDefault();
+    setError('');
+    
+    if (!username || !password) {
+      setError('Veuillez remplir tous les champs');
+      return;
+    }
+
+    const user = users.find(u => u.username === username && u.password === password);
+    
+    if (user) {
+      setIsLoggedIn(true);
+      setError('');
+    } else {
+      setError('Identifiant ou mot de passe incorrect');
+    }
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    setError('');
+
+    if (!registerData.username || !registerData.email || !registerData.password || !registerData.confirmPassword) {
+      setError('Veuillez remplir tous les champs');
+      return;
+    }
+
+    if (registerData.password !== registerData.confirmPassword) {
+      setError('Les mots de passe ne correspondent pas');
+      return;
+    }
+
+    if (registerData.password.length < 6) {
+      setError('Le mot de passe doit contenir au moins 6 caractères');
+      return;
+    }
+
+    const userExists = users.find(u => u.username === registerData.username);
+    if (userExists) {
+      setError('Ce nom d\'utilisateur existe déjà');
+      return;
+    }
+
+    setUsers([...users, { username: registerData.username, password: registerData.password }]);
+    setUsername(registerData.username);
+    setPassword(registerData.password);
+    setShowRegister(false);
+    setError('');
+    alert('Compte créé avec succès ! Vous pouvez maintenant vous connecter.');
+    setRegisterData({ username: '', email: '', password: '', confirmPassword: '' });
   };
 
   const handleLogout = () => {
@@ -58,6 +116,117 @@ const SecNumAcademy = () => {
 
   // Login Page
   if (!isLoggedIn) {
+    // Register Form
+    if (showRegister) {
+      return (
+        <div className="min-h-screen relative overflow-hidden" style={{
+          background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
+        }}>
+          <div className="absolute inset-0 opacity-20" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L93.3 25 L93.3 75 L50 100 L6.7 75 L6.7 25 Z' fill='none' stroke='%23003d5c' stroke-width='0.5'/%3E%3C/svg%3E")`,
+            backgroundSize: '100px 100px'
+          }}></div>
+
+          <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
+            <div className="mb-8 text-center">
+              <div className="flex items-center justify-center mb-4">
+                <div className="mr-4" style={{ color: '#003d5c' }}>
+                  <svg width="80" height="80" viewBox="0 0 100 100" fill="currentColor">
+                    <path d="M50 10 L20 25 L20 50 C20 70 35 85 50 90 C65 85 80 70 80 50 L80 25 Z"/>
+                    <rect x="45" y="60" width="10" height="15" fill="currentColor"/>
+                    <circle cx="50" cy="60" r="3" fill="white"/>
+                  </svg>
+                </div>
+                <div>
+                  <h1 className="text-5xl font-bold" style={{ color: '#003d5c' }}>SecNum</h1>
+                  <p className="text-3xl italic text-gray-500">académie</p>
+                </div>
+              </div>
+              <p className="text-sm font-medium text-gray-600">ANSSI</p>
+            </div>
+
+            <div className="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8">
+              <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Créer un compte</h2>
+              
+              {error && (
+                <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm">
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleRegister} className="space-y-4">
+                <div>
+                  <input
+                    type="text"
+                    value={registerData.username}
+                    onChange={(e) => setRegisterData({...registerData, username: e.target.value})}
+                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    placeholder="Nom d'utilisateur"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    value={registerData.email}
+                    onChange={(e) => setRegisterData({...registerData, email: e.target.value})}
+                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    placeholder="Adresse email"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="password"
+                    value={registerData.password}
+                    onChange={(e) => setRegisterData({...registerData, password: e.target.value})}
+                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    placeholder="Mot de passe"
+                  />
+                </div>
+                <div>
+                  <input
+                    type="password"
+                    value={registerData.confirmPassword}
+                    onChange={(e) => setRegisterData({...registerData, confirmPassword: e.target.value})}
+                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    placeholder="Confirmer le mot de passe"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full px-6 py-3 bg-[#F4B942] hover:bg-[#E5A832] text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl"
+                >
+                  CRÉER MON COMPTE
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setShowRegister(false)}
+                  className="w-full px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-full transition-all"
+                >
+                  Retour à la connexion
+                </button>
+              </form>
+            </div>
+
+            <div className="mt-16">
+              <div className="w-32 h-32 rounded-full bg-white shadow-xl flex items-center justify-center">
+                <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+                  <circle cx="50" cy="50" r="45" fill="#003d5c"/>
+                  <circle cx="50" cy="50" r="38" fill="white"/>
+                  <path d="M35 50 L45 60 L65 40" stroke="#003d5c" strokeWidth="4" fill="none"/>
+                  <path d="M50 20 L70 35 L70 50 L50 65 L30 50 L30 35 Z" fill="#E1000F"/>
+                  <path d="M50 30 L60 37 L60 50 L50 57 L40 50 L40 37 Z" fill="#0055A4"/>
+                  <text x="50" y="85" textAnchor="middle" fill="#003d5c" fontSize="10" fontWeight="bold">ANSSI</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    // Login Form
     return (
       <div className="min-h-screen relative overflow-hidden" style={{
         background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
@@ -91,6 +260,12 @@ const SecNumAcademy = () => {
 
           {/* Login Form */}
           <div className="w-full max-w-md">
+            {error && (
+              <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm text-center">
+                {error}
+              </div>
+            )}
+
             <form onSubmit={handleLogin} className="space-y-4">
               <div>
                 <input
@@ -142,7 +317,14 @@ const SecNumAcademy = () => {
                   CONNEXION
                 </button>
               </div>
-            </form>
+                          </form>
+
+            <div className="mt-4 text-center">
+              <p className="text-sm text-gray-600">
+                Comptes de démonstration :<br />
+                <span className="font-mono text-xs">admin / admin123</span> ou <span className="font-mono text-xs">demo / demo123</span>
+              </p>
+            </div>
           </div>
 
           {/* ANSSI Logo at Bottom */}
