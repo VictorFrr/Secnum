@@ -114,9 +114,7 @@ const SecNumAcademy = () => {
     }
   ];
 
-  // Login Page
   if (!isLoggedIn) {
-    // Register Form
     if (showRegister) {
       return (
         <div className="min-h-screen relative overflow-hidden" style={{
@@ -226,19 +224,16 @@ const SecNumAcademy = () => {
       );
     }
 
-    // Login Form
     return (
       <div className="min-h-screen relative overflow-hidden" style={{
         background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
       }}>
-        {/* Hexagonal Pattern Background */}
         <div className="absolute inset-0 opacity-20" style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L93.3 25 L93.3 75 L50 100 L6.7 75 L6.7 25 Z' fill='none' stroke='%23003d5c' stroke-width='0.5'/%3E%3C/svg%3E")`,
           backgroundSize: '100px 100px'
         }}></div>
 
         <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
-          {/* Logo Section */}
           <div className="mb-8 text-center">
             <div className="flex items-center justify-center mb-4">
               <div className="mr-4" style={{ color: '#003d5c' }}>
@@ -258,7 +253,6 @@ const SecNumAcademy = () => {
             <p className="text-sm font-medium text-gray-600">ANSSI</p>
           </div>
 
-          {/* Login Form */}
           <div className="w-full max-w-md">
             {error && (
               <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm text-center">
@@ -327,7 +321,6 @@ const SecNumAcademy = () => {
             </div>
           </div>
 
-          {/* ANSSI Logo at Bottom */}
           <div className="mt-16">
             <div className="w-32 h-32 rounded-full bg-white shadow-xl flex items-center justify-center">
               <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
@@ -345,12 +338,9 @@ const SecNumAcademy = () => {
     );
   }
 
-  // Main Dashboard
   return (
     <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
       <div className="w-64 bg-[#003d5c] text-white flex flex-col">
-        {/* Logo */}
         <div className="p-6 border-b border-[#004d73]">
           <div className="flex items-center space-x-3">
             <div className="text-white">
@@ -368,7 +358,6 @@ const SecNumAcademy = () => {
           </div>
         </div>
 
-        {/* Navigation */}
         <nav className="flex-1 p-4">
           <ul className="space-y-2">
             <li>
@@ -398,7 +387,6 @@ const SecNumAcademy = () => {
           </ul>
         </nav>
 
-        {/* Help Button */}
         <div className="p-4 border-t border-[#004d73]">
           <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
             <HelpCircle size={20} />
@@ -407,9 +395,7 @@ const SecNumAcademy = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 overflow-y-auto">
-        {/* Logout Button */}
         <div className="flex justify-end p-4">
           <button
             onClick={handleLogout}
@@ -420,7 +406,6 @@ const SecNumAcademy = () => {
           </button>
         </div>
 
-        {/* Header Alert */}
         <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6 mx-4">
           <p className="text-sm text-gray-700 mb-2">
             <strong>Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</strong>
@@ -430,7 +415,6 @@ const SecNumAcademy = () => {
           </p>
         </div>
 
-        {/* Modules Section */}
         <div className="px-8 pb-8">
           <h2 className="text-3xl font-bold text-gray-800 mb-8">MODULES</h2>
           
@@ -439,7 +423,6 @@ const SecNumAcademy = () => {
               const IconComponent = module.icon;
               return (
                 <div key={module.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                  {/* Module Image Header */}
                   <div 
                     className="h-48 flex items-center justify-center relative"
                     style={{ backgroundColor: module.bgColor }}
@@ -452,7 +435,6 @@ const SecNumAcademy = () => {
                     </div>
                   </div>
 
-                  {/* Module Content */}
                   <div className="p-6">
                     <div className="text-sm text-gray-500 mb-2 font-medium">MODULE {module.id}</div>
                     <h3 className="text-xl font-bold text-gray-800 mb-4">{module.title}</h3>
@@ -482,7 +464,6 @@ const SecNumAcademy = () => {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="px-8 py-4 text-sm text-gray-600 border-t">
           <div className="flex justify-between items-center">
             <span>© 2026 ANSSI</span>
@@ -495,31 +476,3 @@ const SecNumAcademy = () => {
 };
 
 export default SecNumAcademy;
-```
-
-## 📦 Fichier 9 : `.gitignore`
-```
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
