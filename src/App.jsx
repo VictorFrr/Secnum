@@ -17,22 +17,43 @@ const SecNumAcademy = () => {
     confirmPassword: ''
   });
 
-  // Charger les utilisateurs depuis le stockage au démarrage
   useEffect(() => {
     loadUsers();
   }, []);
 
-  const loadUsers = async () => {
+  const loadUsers = () => {
     try {
       setIsLoading(true);
-      // Initialiser avec des comptes par défaut si la base est vide
-      const usersResult = await window.storage.get('users-database');
-      if (!usersResult) {
+      const usersData = localStorage.getItem('secnum-users-database');
+      
+      if (!usersData) {
         const defaultUsers = [
-          { username: 'admin', password: 'admin123', email: 'admin@secnum.fr', createdAt: new Date().toISOString() },
-          { username: 'demo', password: 'demo123', email: 'demo@secnum.fr', createdAt: new Date().toISOString() }
+          { 
+            username: 'admin', 
+            password: 'admin123', 
+            email: 'admin@secnum.fr', 
+            createdAt: new Date().toISOString(),
+            modules: {
+              1: { timeSpent: 13116, score: 44 },
+              2: { timeSpent: 7468, score: 0 },
+              3: { timeSpent: 0, score: 0 },
+              4: { timeSpent: 0, score: 0 }
+            }
+          },
+          { 
+            username: 'demo', 
+            password: 'demo123', 
+            email: 'demo@secnum.fr', 
+            createdAt: new Date().toISOString(),
+            modules: {
+              1: { timeSpent: 0, score: 0 },
+              2: { timeSpent: 0, score: 0 },
+              3: { timeSpent: 0, score: 0 },
+              4: { timeSpent: 0, score: 0 }
+            }
+          }
         ];
-        await window.storage.set('users-database', JSON.stringify(defaultUsers));
+        localStorage.setItem('secnum-users-database', JSON.stringify(defaultUsers));
       }
     } catch (error) {
       console.error('Erreur lors du chargement des utilisateurs:', error);
@@ -41,19 +62,19 @@ const SecNumAcademy = () => {
     }
   };
 
-  const getAllUsers = async () => {
+  const getAllUsers = () => {
     try {
-      const result = await window.storage.get('users-database');
-      return result ? JSON.parse(result.value) : [];
+      const usersData = localStorage.getItem('secnum-users-database');
+      return usersData ? JSON.parse(usersData) : [];
     } catch (error) {
       console.error('Erreur lors de la récupération des utilisateurs:', error);
       return [];
     }
   };
 
-  const saveUsers = async (users) => {
+  const saveUsers = (users) => {
     try {
-      await window.storage.set('users-database', JSON.stringify(users));
+      localStorage.setItem('secnum-users-database', JSON.stringify(users));
       return true;
     } catch (error) {
       console.error('Erreur lors de la sauvegarde des utilisateurs:', error);
@@ -61,7 +82,7 @@ const SecNumAcademy = () => {
     }
   };
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     setError('');
     
@@ -70,7 +91,7 @@ const SecNumAcademy = () => {
       return;
     }
 
-    const users = await getAllUsers();
+    const users = getAllUsers();
     const user = users.find(u => u.username === username && u.password === password);
     
     if (user) {
@@ -78,16 +99,15 @@ const SecNumAcademy = () => {
       setIsLoggedIn(true);
       setError('');
       
-      // Sauvegarder la session si "Se souvenir de moi" est coché
       if (rememberMe) {
-        localStorage.setItem('secnum-user', JSON.stringify(user));
+        localStorage.setItem('secnum-current-user', JSON.stringify(user));
       }
     } else {
       setError('Identifiant ou mot de passe incorrect');
     }
   };
 
-  const handleRegister = async (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
     setError('');
 
@@ -106,30 +126,26 @@ const SecNumAcademy = () => {
       return;
     }
 
-    // Validation de l'email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(registerData.email)) {
       setError('Adresse email invalide');
       return;
     }
 
-    const users = await getAllUsers();
+    const users = getAllUsers();
     
-    // Vérifier si l'utilisateur existe déjà
     const userExists = users.find(u => u.username === registerData.username);
     if (userExists) {
       setError('Ce nom d\'utilisateur existe déjà');
       return;
     }
 
-    // Vérifier si l'email existe déjà
     const emailExists = users.find(u => u.email === registerData.email);
     if (emailExists) {
       setError('Cette adresse email est déjà utilisée');
       return;
     }
 
-    // Créer le nouveau compte
     const newUser = {
       username: registerData.username,
       email: registerData.email,
@@ -144,14 +160,14 @@ const SecNumAcademy = () => {
     };
 
     users.push(newUser);
-    const saved = await saveUsers(users);
+    const saved = saveUsers(users);
 
     if (saved) {
-      setUsername(registerData.username);
-      setPassword(registerData.password);
       setShowRegister(false);
       setError('');
-      alert('Compte créé avec succès ! Vous pouvez maintenant vous connecter.');
+      alert('✅ Compte créé avec succès ! Vous pouvez maintenant vous connecter avec vos identifiants.');
+      setUsername(registerData.username);
+      setPassword(registerData.password);
       setRegisterData({ username: '', email: '', password: '', confirmPassword: '' });
     } else {
       setError('Erreur lors de la création du compte. Veuillez réessayer.');
@@ -164,7 +180,7 @@ const SecNumAcademy = () => {
     setUsername('');
     setPassword('');
     setRememberMe(false);
-    localStorage.removeItem('secnum-user');
+    localStorage.removeItem('secnum-current-user');
   };
 
   const modules = [
