@@ -177,19 +177,16 @@ const SecNumAcademy = () => {
       return;
     }
 
-    // Simuler l'envoi d'email (dans une vraie application, ceci appellerait une API backend)
     const resetToken = Math.random().toString(36).substring(2, 15);
     const resetLink = `${window.location.origin}/reset-password?token=${resetToken}`;
     
-    // Sauvegarder le token de réinitialisation
     const updatedUsers = users.map(u => 
       u.email === forgotEmail 
-        ? { ...u, resetToken: resetToken, resetTokenExpiry: Date.now() + 3600000 } // Token valide 1h
+        ? { ...u, resetToken: resetToken, resetTokenExpiry: Date.now() + 3600000 }
         : u
     );
     saveUsers(updatedUsers);
 
-    // Simuler l'envoi d'email
     console.log(`
 ═══════════════════════════════════════════════════════
 📧 EMAIL DE RÉINITIALISATION
@@ -283,7 +280,6 @@ L'équipe SecNum Académie
   }
 
   if (!isLoggedIn) {
-    // Forgot Password Form
     if (showForgotPassword) {
       return (
         <div className="min-h-screen relative overflow-hidden" style={{
@@ -373,7 +369,6 @@ L'équipe SecNum Académie
       );
     }
 
-    // Register Form
     if (showRegister) {
       return (
         <div className="min-h-screen relative overflow-hidden" style={{
@@ -486,7 +481,6 @@ L'équipe SecNum Académie
       );
     }
 
-    // Login Form
     return (
       <div className="min-h-screen relative overflow-hidden" style={{
         background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
@@ -628,106 +622,6 @@ L'équipe SecNum Académie
           <ul className="space-y-2">
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
-                <User size={20} />
-                <span>Mon profil</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-        <div className="p-4 border-t border-[#004d73]">
-          <div className="mb-2 px-3 py-2 bg-[#004d73] rounded">
-            <p className="text-xs text-gray-300">Connecté en tant que</p>
-            <p className="text-sm font-semibold">{currentUser?.username}</p>
-          </div>
-          <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
-            <HelpCircle size={20} />
-            <span>Aide</span>
-          </a>
-        </div>
-      </div>
-
-      <div className="flex-1 overflow-y-auto">
-        <div className="flex justify-end p-4">
-          <button
-            onClick={handleLogout}
-            className="flex items-center space-x-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg shadow transition-colors border border-gray-200"
-          >
-            <LogOut size={18} />
-            <span className="font-medium">Déconnexion</span>
-          </button>
-        </div>
-
-        <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6 mx-4">
-          <p className="text-sm text-gray-700 mb-2">
-            <strong>Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</strong>
-          </p>
-          <p className="text-sm text-gray-600">
-            Tout parcours commencé d'ici-là devra donc être complété avant fin février. Soyez rassurés : Une nouvelle version de cette formation en ligne est en préparation et viendra lui succéder. Les contenus de la version actuelle du MOOC sont accessibles gratuitement au format SCORM pour les entités disposant d'un Learning management système (LMS) sur demande à l'adresse suivante : <a href="mailto:secnumacademie@ssi.gouv.fr" className="text-blue-600 underline">secnumacademie@ssi.gouv.fr</a>
-          </p>
-        </div>
-
-        <div className="px-8 pb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8">MODULES</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {modules.map((module) => {
-              const IconComponent = module.icon;
-              return (
-                <div key={module.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                  <div 
-                    className="h-48 flex items-center justify-center relative"
-                    style={{ backgroundColor: module.bgColor }}
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                      <IconComponent size={120} className="text-white" />
-                    </div>
-                    <div className="relative z-10 text-white text-center">
-                      <IconComponent size={64} className="mx-auto mb-2" />
-                    </div>
-                  </div>
-
-                  <div className="p-6">
-                    <div className="text-sm text-gray-500 mb-2 font-medium">MODULE {module.id}</div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-4">{module.title}</h3>
-                    
-                    <div className="flex items-center justify-between mb-4 text-sm">
-                      <div className="flex items-center text-gray-600">
-                        <Clock size={16} className="mr-2" />
-                        <span>Temps passé : {formatTime(module.timeSpent)}</span>
-                      </div>
-                      <div className="flex items-center">
-                        <Star size={16} className={`mr-2 ${module.score > 0 ? 'text-[#F4B942]' : 'text-gray-400'}`} fill={module.score > 0 ? '#F4B942' : 'none'} />
-                        <span className={`font-bold ${module.score > 0 ? 'text-[#F4B942]' : 'text-gray-600'}`}>
-                          Score : {module.score}%
-                        </span>
-                      </div>
-                    </div>
-
-                    <button 
-                      className="w-full bg-[#F4B942] hover:bg-[#E5A832] text-white font-semibold py-3 rounded-full transition-colors"
-                    >
-                      Afficher les unités
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        <div className="px-8 py-4 text-sm text-gray-600 border-t">
-          <div className="flex justify-between items-center">
-            <span>© 2026 ANSSI</span>
-            <a href="#" className="text-blue-600 hover:underline">Mentions légales</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default SecNumAcademy;-3 rounded hover:bg-[#004d73] transition">
                 <Home size={20} />
                 <span>Accueil</span>
               </a>
@@ -745,4 +639,102 @@ export default SecNumAcademy;-3 rounded hover:bg-[#004d73] transition">
               </a>
             </li>
             <li>
-              <a href="#" className="flex items-center space-x-3 p
+              <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
+                <User size={20} />
+                <span>Mon profil</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div className="p-4 border-t border-[#004d73]">
+      <div className="mb-2 px-3 py-2 bg-[#004d73] rounded">
+        <p className="text-xs text-gray-300">Connecté en tant que</p>
+        <p className="text-sm font-semibold">{currentUser?.username}</p>
+      </div>
+      <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
+        <HelpCircle size={20} />
+        <span>Aide</span>
+      </a>
+    </div>
+  </div>
+
+  <div className="flex-1 overflow-y-auto">
+    <div className="flex justify-end p-4">
+      <button
+        onClick={handleLogout}
+        className="flex items-center space-x-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg shadow transition-colors border border-gray-200"
+      >
+        <LogOut size={18} />
+        <span className="font-medium">Déconnexion</span>
+      </button>
+    </div>
+
+    <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6 mx-4">
+      <p className="text-sm text-gray-700 mb-2">
+        <strong>Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</strong>
+      </p>
+      <p className="text-sm text-gray-600">
+        Tout parcours commencé d'ici-là devra donc être complété avant fin février. Soyez rassurés : Une nouvelle version de cette formation en ligne est en préparation et viendra lui succéder. Les contenus de la version actuelle du MOOC sont accessibles gratuitement au format SCORM pour les entités disposant d'un Learning management système (LMS) sur demande à l'adresse suivante : <a href="mailto:secnumacademie@ssi.gouv.fr" className="text-blue-600 underline">secnumacademie@ssi.gouv.fr</a>
+      </p>
+    </div>
+
+    <div className="px-8 pb-8">
+      <h2 className="text-3xl font-bold text-gray-800 mb-8">MODULES</h2>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {modules.map((module) => {
+          const IconComponent = module.icon;
+          return (
+            <div key={module.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+              <div 
+                className="h-48 flex items-center justify-center relative"
+                style={{ backgroundColor: module.bgColor }}
+              >
+                <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                  <IconComponent size={120} className="text-white" />
+                </div>
+                <div className="relative z-10 text-white text-center">
+                  <IconComponent size={64} className="mx-auto mb-2" />
+                </div>
+              </div>
+
+              <div className="p-6">
+                <div className="text-sm text-gray-500 mb-2 font-medium">MODULE {module.id}</div>
+                <h3 className="text-xl font-bold text-gray-800 mb-4">{module.title}</h3>
+                
+                <div className="flex items-center justify-between mb-4 text-sm">
+                  <div className="flex items-center text-gray-600">
+                    <Clock size={16} className="mr-2" />
+                    <span>Temps passé : {formatTime(module.timeSpent)}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Star size={16} className={`mr-2 ${module.score > 0 ? 'text-[#F4B942]' : 'text-gray-400'}`} fill={module.score > 0 ? '#F4B942' : 'none'} />
+                    <span className={`font-bold ${module.score > 0 ? 'text-[#F4B942]' : 'text-gray-600'}`}>
+                      Score : {module.score}%
+                    </span>
+                  </div>
+                </div>
+
+                <button 
+                  className="w-full bg-[#F4B942] hover:bg-[#E5A832] text-white font-semibold py-3 rounded-full transition-colors"
+                >
+                  Afficher les unités
+                </button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+
+    <div className="px-8 py-4 text-sm text-gray-600 border-t">
+      <div className="flex justify-between items-center">
+        <span>© 2026 ANSSI</span>
+        <a href="#" className="text-blue-600 hover:underline">Mentions légales</a>
+      </div>
+    </div>
+  </div>
+</div>
+    );
+};
+export default SecNumAcademy;
