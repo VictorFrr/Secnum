@@ -231,7 +231,7 @@ L'équipe SecNum Académie
       id: 1,
       title: "Panorama de la SSI",
       timeSpent: currentUser?.modules?.[1]?.timeSpent || 0,
-      score: currentUser?.modules?.[1]?.score || 0,
+      score: currentUser?.modules?.[1]?.score || 75,
       icon: Globe,
       bgColor: "#5B9BD5"
     },
@@ -239,7 +239,7 @@ L'équipe SecNum Académie
       id: 2,
       title: "Sécurité de l'authentification",
       timeSpent: currentUser?.modules?.[2]?.timeSpent || 0,
-      score: currentUser?.modules?.[2]?.score || 0,
+      score: currentUser?.modules?.[2]?.score || 75,
       icon: Shield,
       bgColor: "#F4B942"
     },
@@ -247,7 +247,7 @@ L'équipe SecNum Académie
       id: 3,
       title: "Sécurité sur Internet",
       timeSpent: currentUser?.modules?.[3]?.timeSpent || 0,
-      score: currentUser?.modules?.[3]?.score || 0,
+      score: currentUser?.modules?.[3]?.score || 75,
       icon: Wifi,
       bgColor: "#D97373"
     },
@@ -255,7 +255,7 @@ L'équipe SecNum Académie
       id: 4,
       title: "Sécurité du poste de travail et nomadisme",
       timeSpent: currentUser?.modules?.[4]?.timeSpent || 0,
-      score: currentUser?.modules?.[4]?.score || 0,
+      score: currentUser?.modules?.[4]?.score || 75,
       icon: Monitor,
       bgColor: "#70AD47"
     }
@@ -532,7 +532,7 @@ L'équipe SecNum Académie
     <div className="flex h-screen bg-gray-100">
       <div className="w-64 bg-[#00416B] text-white flex flex-col">
         <div className="p-4 bg-[#003051] flex items-center justify-center">
-          <img src="/img/logo-secnum-white.png" alt="SecNum Académie" className="h-10 w-auto object-contain" />
+          <img src="/img/logo-secnum-white.png" alt="SecNum Académie" className="h-14 w-auto object-contain" />
         </div>
 
         <nav className="flex-1 p-4">
@@ -540,25 +540,25 @@ L'équipe SecNum Académie
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
                 <img src="/icon/house.png" alt="Accueil" className="w-5 h-5 flex-shrink-0 object-contain" />
-                <span>Accueil</span>
+                <span className="font-bold">Accueil</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
                 <img src="/icon/ressources.png" alt="Ressources" className="w-5 h-5 flex-shrink-0 object-contain" />
-                <span>Mes ressources</span>
+                <span className="font-bold">Mes ressources</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
                 <img src="/icon/attestation.png" alt="Attestation" className="w-5 h-5 flex-shrink-0 object-contain" />
-                <span>Mon attestation</span>
+                <span className="font-bold">Mon attestation</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
                 <img src="/icon/accueil.png" alt="Profil" className="w-5 h-5 flex-shrink-0 object-contain" />
-                <span>Mon profil</span>
+                <span className="font-bold">Mon profil</span>
               </a>
             </li>
           </ul>
@@ -567,7 +567,7 @@ L'équipe SecNum Académie
         <a href="#" className="p-6 bg-[#003051] hover:bg-[#002540] transition-colors cursor-pointer">
           <div className="flex flex-col items-center justify-center">
             <HelpCircle size={24} className="mb-2 flex-shrink-0" style={{ color: '#4289DB' }} />
-            <span style={{ color: '#4289DB' }}>Aide</span>
+            <span className="font-bold" style={{ color: '#4289DB' }}>Aide</span>
           </div>
         </a>
       </div>
@@ -597,25 +597,30 @@ L'équipe SecNum Académie
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {modules.map((module) => {
-              const IconComponent = module.icon;
               return (
                 <div key={module.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                  <div className="h-48 flex items-center justify-center relative overflow-hidden">
+                  <div className="relative">
                     <img 
-                      src={`/module/Module${module.id}.jpg`} 
+                      src={`/module/Module${module.id}.png`} 
                       alt={module.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-48 object-cover"
                     />
+                    <div className="absolute bottom-0 left-0 right-0 h-2 bg-gray-400">
+                      <div 
+                        className="h-full bg-[#F4B942] transition-all duration-500 ease-out"
+                        style={{ width: `${module.score}%` }}
+                      ></div>
+                    </div>
                   </div>
 
                   <div className="p-6">
-                    <div className="text-sm text-gray-500 mb-2 font-medium">MODULE {module.id}</div>
+                    <div className="text-sm text-gray-500 mb-2 font-bold">MODULE {module.id}</div>
                     <h3 className="text-xl font-bold text-gray-800 mb-4">{module.title}</h3>
                     
                     <div className="flex items-center justify-between mb-4 text-sm">
                       <div className="flex items-center text-gray-600">
                         <Clock size={16} className="mr-2" />
-                        <span>Temps passé : {formatTime(module.timeSpent)}</span>
+                        <span className="font-bold">Temps passé : {formatTime(module.timeSpent)}</span>
                       </div>
                       <div className="flex items-center">
                         <Star size={16} className={`mr-2 ${module.score > 0 ? 'text-[#F4B942]' : 'text-gray-400'}`} fill={module.score > 0 ? '#F4B942' : 'none'} />
@@ -625,18 +630,8 @@ L'équipe SecNum Académie
                       </div>
                     </div>
 
-                    {/* Barre de progression */}
-                    <div className="mb-4">
-                      <div className="w-full h-2 bg-gray-300 rounded-full overflow-hidden">
-                        <div 
-                          className="h-full bg-[#F4B942] transition-all duration-500 ease-out"
-                          style={{ width: `${module.score}%` }}
-                        ></div>
-                      </div>
-                    </div>
-
                     <button 
-                      className="w-full bg-[#F4B942] hover:bg-[#E5A832] text-white font-semibold py-3 rounded-full transition-colors"
+                      className="w-full bg-[#F4B942] hover:bg-[#E5A832] text-white font-bold py-3 rounded-full transition-colors"
                     >
                       Afficher les unités
                     </button>
