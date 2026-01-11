@@ -539,25 +539,25 @@ L'équipe SecNum Académie
           <ul className="space-y-2">
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
-                <Home size={20} />
+                <img src="/icon/accueil.png" alt="Accueil" className="w-5 h-5" />
                 <span>Accueil</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
-                <Book size={20} />
+                <img src="/icon/ressources.png" alt="Ressources" className="w-5 h-5" />
                 <span>Mes ressources</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
-                <FileText size={20} />
+                <img src="/icon/attestation.png" alt="Attestation" className="w-5 h-5" />
                 <span>Mon attestation</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
-                <User size={20} />
+                <img src="/icon/house.png" alt="Profil" className="w-5 h-5" />
                 <span>Mon profil</span>
               </a>
             </li>
@@ -582,7 +582,7 @@ L'équipe SecNum Académie
             onClick={handleLogout}
             className="flex items-center space-x-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg shadow transition-colors border border-gray-200"
           >
-            <LogOut size={18} />
+            <img src="/icon/deconnexion.png" alt="Déconnexion" className="w-4 h-4" />
             <span className="font-medium">Déconnexion</span>
           </button>
         </div>
