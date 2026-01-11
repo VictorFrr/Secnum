@@ -283,17 +283,15 @@ L'équipe SecNum Académie
     if (showForgotPassword) {
       return (
         <div 
-          className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat"
+          className="min-h-screen bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/img/FondSecNum.jpg')" }}
         >
-          <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
-
-          <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
-            <div className="mb-8 text-center">
-              <img src="/img/logo-secnum.png" alt="SecNum Académie" className="h-24 mx-auto mb-4" />
+          <div className="min-h-screen flex flex-col items-center justify-center p-4">
+            <div className="mb-10 text-center">
+              <img src="/img/logo-secnum.png" alt="SecNum Académie" className="h-32 mx-auto" />
             </div>
 
-            <div className="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8">
+            <div className="w-full max-w-md bg-white/98 rounded-2xl shadow-2xl p-8">
               <div className="flex items-center justify-center mb-6">
                 <Mail size={40} className="text-[#003d5c] mr-3" />
                 <h2 className="text-2xl font-bold text-gray-800">Mot de passe oublié</h2>
@@ -321,14 +319,14 @@ L'équipe SecNum Académie
                     type="email"
                     value={forgotEmail}
                     onChange={(e) => setForgotEmail(e.target.value)}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full px-6 py-4 bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="Votre adresse email"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-[#5B9BD5] hover:bg-[#4A8AC4] text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl"
+                  className="w-full px-6 py-4 bg-[#64A8E1] hover:bg-[#4A8AC4] text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl text-sm tracking-wide"
                 >
                   ENVOYER LE LIEN
                 </button>
@@ -340,15 +338,15 @@ L'équipe SecNum Académie
                     setError('');
                     setSuccess('');
                   }}
-                  className="w-full px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-full transition-all"
+                  className="w-full px-6 py-4 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-full transition-all"
                 >
                   Retour à la connexion
                 </button>
               </form>
             </div>
 
-            <div className="mt-16">
-              <img src="/img/logo-anssi.png" alt="ANSSI" className="h-32 mx-auto" />
+            <div className="mt-20">
+              <img src="/img/logo-anssi.png" alt="ANSSI" className="h-36 mx-auto" />
             </div>
           </div>
         </div>
@@ -358,17 +356,15 @@ L'équipe SecNum Académie
     if (showRegister) {
       return (
         <div 
-          className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat"
+          className="min-h-screen bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "url('/img/FondSecNum.jpg')" }}
         >
-          <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
-
-          <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
-            <div className="mb-8 text-center">
-              <img src="/img/logo-secnum.png" alt="SecNum Académie" className="h-24 mx-auto mb-4" />
+          <div className="min-h-screen flex flex-col items-center justify-center p-4">
+            <div className="mb-10 text-center">
+              <img src="/img/logo-secnum.png" alt="SecNum Académie" className="h-32 mx-auto" />
             </div>
 
-            <div className="w-full max-w-md bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-8">
+            <div className="w-full max-w-md bg-white/98 rounded-2xl shadow-2xl p-8">
               <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Créer un compte</h2>
               
               {error && (
@@ -383,7 +379,7 @@ L'équipe SecNum Académie
                     type="text"
                     value={registerData.username}
                     onChange={(e) => setRegisterData({...registerData, username: e.target.value})}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full px-6 py-4 bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="Nom d'utilisateur"
                   />
                 </div>
@@ -392,7 +388,7 @@ L'équipe SecNum Académie
                     type="email"
                     value={registerData.email}
                     onChange={(e) => setRegisterData({...registerData, email: e.target.value})}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full px-6 py-4 bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="Adresse email"
                   />
                 </div>
@@ -401,7 +397,7 @@ L'équipe SecNum Académie
                     type="password"
                     value={registerData.password}
                     onChange={(e) => setRegisterData({...registerData, password: e.target.value})}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full px-6 py-4 bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="Mot de passe (min. 6 caractères)"
                   />
                 </div>
@@ -410,14 +406,14 @@ L'équipe SecNum Académie
                     type="password"
                     value={registerData.confirmPassword}
                     onChange={(e) => setRegisterData({...registerData, confirmPassword: e.target.value})}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    className="w-full px-6 py-4 bg-white border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400"
                     placeholder="Confirmer le mot de passe"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 bg-[#F4B942] hover:bg-[#E5A832] text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl"
+                  className="w-full px-6 py-4 bg-[#F4B942] hover:bg-[#E5A832] text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl text-sm tracking-wide"
                 >
                   CRÉER MON COMPTE
                 </button>
@@ -428,15 +424,15 @@ L'équipe SecNum Académie
                     setShowRegister(false);
                     setError('');
                   }}
-                  className="w-full px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-full transition-all"
+                  className="w-full px-6 py-4 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-full transition-all"
                 >
                   Retour à la connexion
                 </button>
               </form>
             </div>
 
-            <div className="mt-16">
-              <img src="/img/logo-anssi.png" alt="ANSSI" className="h-32 mx-auto" />
+            <div className="mt-20">
+              <img src="/img/logo-anssi.png" alt="ANSSI" className="h-36 mx-auto" />
             </div>
           </div>
         </div>
@@ -445,14 +441,12 @@ L'équipe SecNum Académie
 
     return (
       <div 
-        className="min-h-screen relative overflow-hidden bg-cover bg-center bg-no-repeat"
+        className="min-h-screen bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/img/FondSecNum.jpg')" }}
       >
-        <div className="absolute inset-0 bg-white/30 backdrop-blur-sm"></div>
-
-        <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-4">
-          <div className="mb-8 text-center">
-            <img src="/img/logo-secnum.png" alt="SecNum Académie" className="h-24 mx-auto mb-4" />
+        <div className="min-h-screen flex flex-col items-center justify-center p-4">
+          <div className="mb-10 text-center">
+            <img src="/img/logo-secnum.png" alt="SecNum Académie" className="h-32 mx-auto" />
           </div>
 
           <div className="w-full max-w-md">
@@ -474,7 +468,7 @@ L'équipe SecNum Académie
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="w-full px-6 py-4 bg-white/90 backdrop-blur-sm border-0 rounded-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-md"
+                  className="w-full px-6 py-4 bg-white border border-gray-300 rounded-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
                   placeholder="Identifiant"
                 />
               </div>
@@ -484,13 +478,13 @@ L'équipe SecNum Académie
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full px-6 py-4 bg-white/90 backdrop-blur-sm border-0 rounded-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-md"
+                  className="w-full px-6 py-4 bg-white border border-gray-300 rounded-full text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
                   placeholder="Mot de passe"
                 />
               </div>
 
-              <div className="flex items-center justify-between px-2">
-                <label className="flex items-center space-x-2 text-sm text-gray-700 cursor-pointer font-medium">
+              <div className="flex items-center justify-between px-4 text-sm">
+                <label className="flex items-center space-x-2 text-gray-600 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={rememberMe}
@@ -502,9 +496,9 @@ L'équipe SecNum Académie
                 <button
                   type="button"
                   onClick={() => setShowForgotPassword(true)}
-                  className="text-sm text-[#5B9BD5] hover:text-[#4A8AC4] font-medium"
+                  className="text-gray-500 hover:text-gray-700 italic"
                 >
-                  Mot de passe oublié ?
+                  Identifiant ou mot de passe oublié ?
                 </button>
               </div>
 
@@ -512,13 +506,13 @@ L'équipe SecNum Académie
                 <button
                   type="button"
                   onClick={() => setShowRegister(true)}
-                  className="flex-1 px-6 py-4 bg-[#F4B942] hover:bg-[#E5A832] text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl"
+                  className="flex-1 px-6 py-4 bg-[#F4B942] hover:bg-[#E5A832] text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl text-sm tracking-wide"
                 >
                   CRÉER UN COMPTE
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-6 py-4 bg-[#5B9BD5] hover:bg-[#4A8AC4] text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl"
+                  className="flex-1 px-6 py-4 bg-[#64A8E1] hover:bg-[#4A8AC4] text-white font-bold rounded-full transition-all shadow-lg hover:shadow-xl text-sm tracking-wide"
                 >
                   CONNEXION
                 </button>
@@ -526,8 +520,8 @@ L'équipe SecNum Académie
             </form>
           </div>
 
-          <div className="mt-16">
-            <img src="/img/logo-anssi.png" alt="ANSSI" className="h-32 mx-auto" />
+          <div className="mt-20">
+            <img src="/img/logo-anssi.png" alt="ANSSI" className="h-36 mx-auto" />
           </div>
         </div>
       </div>
