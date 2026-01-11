@@ -605,15 +605,17 @@ L'équipe SecNum Académie
                       alt={module.title}
                       className="w-full h-48 object-cover"
                     />
-                    <div className="absolute bottom-0 left-0 right-0 h-2 bg-gray-400">
-                      <div 
-                        className="h-full bg-[#F4B942] transition-all duration-500 ease-out"
-                        style={{ width: `${module.score}%` }}
-                      ></div>
-                    </div>
+                  </div>
+                  
+                  {/* Barre grise avec barre de progression */}
+                  <div className="relative h-2 bg-gray-400">
+                    <div 
+                      className="absolute top-0 left-0 h-full bg-[#F4B942] transition-all duration-500 ease-out"
+                      style={{ width: `${module.score}%` }}
+                    ></div>
                   </div>
 
-                  <div className="p-6">
+                  <div className="p-6 bg-white">
                     <div className="text-sm text-gray-500 mb-2 font-bold">MODULE {module.id}</div>
                     <h3 className="text-xl font-bold text-gray-800 mb-4">{module.title}</h3>
                     
