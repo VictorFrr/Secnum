@@ -600,16 +600,12 @@ L'équipe SecNum Académie
               const IconComponent = module.icon;
               return (
                 <div key={module.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                  <div 
-                    className="h-48 flex items-center justify-center relative"
-                    style={{ backgroundColor: module.bgColor }}
-                  >
-                    <div className="absolute inset-0 flex items-center justify-center opacity-10">
-                      <IconComponent size={120} className="text-white" />
-                    </div>
-                    <div className="relative z-10 text-white text-center">
-                      <IconComponent size={64} className="mx-auto mb-2" />
-                    </div>
+                  <div className="h-48 flex items-center justify-center relative overflow-hidden">
+                    <img 
+                      src={`/module/Module${module.id}.jpg`} 
+                      alt={module.title}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   <div className="p-6">
@@ -623,9 +619,19 @@ L'équipe SecNum Académie
                       </div>
                       <div className="flex items-center">
                         <Star size={16} className={`mr-2 ${module.score > 0 ? 'text-[#F4B942]' : 'text-gray-400'}`} fill={module.score > 0 ? '#F4B942' : 'none'} />
-                        <span className={`font-bold ${module.score > 0 ? 'text-[#F4B942]' : 'text-gray-600'}`}>
+                        <span className={`font-bold ${module.score > 0 ? 'text-red-600' : 'text-gray-600'}`}>
                           Score : {module.score}%
                         </span>
+                      </div>
+                    </div>
+
+                    {/* Barre de progression */}
+                    <div className="mb-4">
+                      <div className="w-full h-2 bg-gray-300 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full bg-[#F4B942] transition-all duration-500 ease-out"
+                          style={{ width: `${module.score}%` }}
+                        ></div>
                       </div>
                     </div>
 
