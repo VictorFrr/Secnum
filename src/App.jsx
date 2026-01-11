@@ -530,48 +530,44 @@ L'équipe SecNum Académie
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <div className="w-64 bg-[#003d5c] text-white flex flex-col">
-        <div className="p-6 border-b border-[#004d73]">
-          <img src="/img/logo-secnum.png" alt="SecNum Académie" className="h-12 w-auto" />
+      <div className="w-64 bg-[#00416B] text-white flex flex-col">
+        <div className="p-6 bg-[#003051]">
+          <img src="/img/logo-secnum-white.png" alt="SecNum Académie" className="h-12 w-auto" />
         </div>
 
         <nav className="flex-1 p-4">
           <ul className="space-y-2">
             <li>
-              <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
-                <img src="/icon/accueil.png" alt="Accueil" className="w-5 h-5" />
+              <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
+                <img src="/icon/house.png" alt="Accueil" className="w-5 h-5" />
                 <span>Accueil</span>
               </a>
             </li>
             <li>
-              <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
+              <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
                 <img src="/icon/ressources.png" alt="Ressources" className="w-5 h-5" />
                 <span>Mes ressources</span>
               </a>
             </li>
             <li>
-              <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
+              <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
                 <img src="/icon/attestation.png" alt="Attestation" className="w-5 h-5" />
                 <span>Mon attestation</span>
               </a>
             </li>
             <li>
-              <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
-                <img src="/icon/house.png" alt="Profil" className="w-5 h-5" />
+              <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
+                <img src="/icon/accueil.png" alt="Profil" className="w-5 h-5" />
                 <span>Mon profil</span>
               </a>
             </li>
           </ul>
         </nav>
 
-        <div className="p-4 border-t border-[#004d73]">
-          <div className="mb-2 px-3 py-2 bg-[#004d73] rounded">
-            <p className="text-xs text-gray-300">Connecté en tant que</p>
-            <p className="text-sm font-semibold">{currentUser?.username}</p>
-          </div>
-          <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#004d73] transition">
-            <HelpCircle size={20} />
-            <span>Aide</span>
+        <div className="p-6 bg-[#00416B]">
+          <a href="#" className="flex flex-col items-center justify-center p-3 rounded hover:bg-[#003051] transition">
+            <HelpCircle size={24} className="mb-2" style={{ color: '#4289DB' }} />
+            <span style={{ color: '#4289DB' }}>Aide</span>
           </a>
         </div>
       </div>
