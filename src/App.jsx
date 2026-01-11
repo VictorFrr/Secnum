@@ -531,45 +531,45 @@ L'équipe SecNum Académie
   return (
     <div className="flex h-screen bg-gray-100">
       <div className="w-64 bg-[#00416B] text-white flex flex-col">
-        <div className="p-6 bg-[#003051]">
-          <img src="/img/logo-secnum-white.png" alt="SecNum Académie" className="h-12 w-auto" />
+        <div className="p-4 bg-[#003051] flex items-center justify-center">
+          <img src="/img/logo-secnum-white.png" alt="SecNum Académie" className="h-10 w-auto object-contain" />
         </div>
 
         <nav className="flex-1 p-4">
           <ul className="space-y-2">
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
-                <img src="/icon/house.png" alt="Accueil" className="w-5 h-5" />
+                <img src="/icon/house.png" alt="Accueil" className="w-5 h-5 flex-shrink-0 object-contain" />
                 <span>Accueil</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
-                <img src="/icon/ressources.png" alt="Ressources" className="w-5 h-5" />
+                <img src="/icon/ressources.png" alt="Ressources" className="w-5 h-5 flex-shrink-0 object-contain" />
                 <span>Mes ressources</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
-                <img src="/icon/attestation.png" alt="Attestation" className="w-5 h-5" />
+                <img src="/icon/attestation.png" alt="Attestation" className="w-5 h-5 flex-shrink-0 object-contain" />
                 <span>Mon attestation</span>
               </a>
             </li>
             <li>
               <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
-                <img src="/icon/accueil.png" alt="Profil" className="w-5 h-5" />
+                <img src="/icon/accueil.png" alt="Profil" className="w-5 h-5 flex-shrink-0 object-contain" />
                 <span>Mon profil</span>
               </a>
             </li>
           </ul>
         </nav>
 
-        <div className="p-6 bg-[#00416B]">
-          <a href="#" className="flex flex-col items-center justify-center p-3 rounded hover:bg-[#003051] transition">
-            <HelpCircle size={24} className="mb-2" style={{ color: '#4289DB' }} />
+        <a href="#" className="p-6 bg-[#003051] hover:bg-[#002540] transition-colors cursor-pointer">
+          <div className="flex flex-col items-center justify-center">
+            <HelpCircle size={24} className="mb-2 flex-shrink-0" style={{ color: '#4289DB' }} />
             <span style={{ color: '#4289DB' }}>Aide</span>
-          </a>
-        </div>
+          </div>
+        </a>
       </div>
 
       <div className="flex-1 overflow-y-auto">
