@@ -531,8 +531,8 @@ L'équipe SecNum Académie
   return (
     <div className="flex h-screen bg-gray-100">
       <div className="w-64 bg-[#00416B] text-white flex flex-col">
-        <div className="p-4 bg-[#003051] flex items-center justify-center">
-          <img src="/img/logo-secnum-white.png" alt="SecNum Académie" className="h-14 w-auto object-contain" />
+        <div className="py-3 px-4 bg-[#003051] flex items-center justify-center">
+          <img src="/img/logo-secnum-white.png" alt="SecNum Académie" className="h-12 w-auto object-contain" />
         </div>
 
         <nav className="flex-1 p-4">
@@ -564,9 +564,9 @@ L'équipe SecNum Académie
           </ul>
         </nav>
 
-        <a href="#" className="p-6 bg-[#003051] hover:bg-[#002540] transition-colors cursor-pointer">
-          <div className="flex flex-col items-center justify-center">
-            <HelpCircle size={24} className="mb-2 flex-shrink-0" style={{ color: '#4289DB' }} />
+        <a href="#" className="h-[75px] px-6 bg-[#003051] hover:bg-[#002540] transition-colors cursor-pointer flex items-center justify-center">
+          <div className="flex items-center space-x-3">
+            <HelpCircle size={20} className="flex-shrink-0" style={{ color: '#4289DB' }} />
             <span className="font-bold" style={{ color: '#4289DB' }}>Aide</span>
           </div>
         </a>
@@ -598,24 +598,24 @@ L'équipe SecNum Académie
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {modules.map((module) => {
               return (
-                <div key={module.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                  <div className="relative">
+                <div key={module.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow" style={{ width: '620px' }}>
+                  <div className="relative" style={{ height: '207px' }}>
                     <img 
                       src={`/module/Module${module.id}.png`} 
                       alt={module.title}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-full object-cover"
                     />
                   </div>
                   
                   {/* Barre grise avec barre de progression */}
-                  <div className="relative h-2 bg-gray-400">
+                  <div className="relative bg-gray-400" style={{ height: '18px' }}>
                     <div 
                       className="absolute top-0 left-0 h-full bg-[#F4B942] transition-all duration-500 ease-out"
                       style={{ width: `${module.score}%` }}
                     ></div>
                   </div>
 
-                  <div className="p-6 bg-white">
+                  <div className="p-6 bg-white" style={{ height: '265px' }}>
                     <div className="text-sm text-gray-500 mb-2 font-bold">MODULE {module.id}</div>
                     <h3 className="text-xl font-bold text-gray-800 mb-4">{module.title}</h3>
                     
