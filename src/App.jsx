@@ -574,7 +574,7 @@ L'équipe SecNum Académie
 
       <div className="flex-1 overflow-y-auto">
         {/* Barre du haut avec bouton déconnexion - 65px */}
-        <div className="h-[65px] bg-white flex items-center justify-end px-6" style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.25)', position: 'relative', zIndex: 10 }}>
+        <div className="h-[65px] bg-white flex items-center justify-end px-6" style={{ boxShadow: '0 2px 6px rgba(0,0,0,0.15)', position: 'relative', zIndex: 10 }}>
           <button
             onClick={handleLogout}
             className="flex items-center justify-center w-10 h-10 hover:bg-gray-100 rounded-lg transition-colors"
@@ -585,8 +585,8 @@ L'équipe SecNum Académie
         </div>
 
         {/* Barre d'avertissement - 137px */}
-        <div className="h-[137px] bg-white flex items-center justify-center px-10" style={{ position: 'relative', zIndex: 5 }}>
-          <div className="max-w-[calc(100%-361px)]">
+        <div className="h-[137px] bg-white flex items-center" style={{ position: 'relative', zIndex: 5, paddingLeft: '40px', paddingRight: '321px' }}>
+          <div className="w-full">
             <p className="text-sm text-gray-700 leading-relaxed">
               <span className="font-extrabold text-gray-900">Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</span>
               <br />
