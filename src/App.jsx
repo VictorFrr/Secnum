@@ -574,7 +574,7 @@ L'équipe SecNum Académie
 
       <div className="flex-1 overflow-y-auto">
         {/* Barre du haut avec bouton déconnexion - 65px */}
-        <div className="h-[65px] bg-white shadow-md flex items-center justify-end px-6">
+        <div className="h-[65px] bg-white flex items-center justify-end px-6" style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
           <button
             onClick={handleLogout}
             className="flex items-center justify-center w-10 h-10 hover:bg-gray-100 rounded-lg transition-colors"
@@ -585,11 +585,12 @@ L'équipe SecNum Académie
         </div>
 
         {/* Barre d'avertissement - 137px */}
-        <div className="h-[137px] bg-white shadow-md flex items-center px-10">
+        <div className="h-[137px] bg-white flex items-center px-10 mb-6" style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
           <div className="max-w-[calc(100%-361px)]">
-            <p className="text-sm text-gray-700">
-              <strong className="font-extrabold text-gray-900">Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</strong>
-              {' '}Tout parcours commencé d'ici-là devra donc être complété avant fin février. Soyez rassurés : Une nouvelle version de cette formation en ligne est en préparation et viendra lui succéder. Les contenus de la version actuelle du MOOC sont accessibles gratuitement au format SCORM pour les entités disposant d'un Learning management système (LMS) sur demande à l'adresse suivante : <a href="mailto:secnumacademie@ssi.gouv.fr" className="underline" style={{ color: '#F4B066' }}>secnumacademie@ssi.gouv.fr</a>
+            <p className="text-sm text-gray-700 leading-relaxed">
+              <span className="font-extrabold text-gray-900">Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</span>
+              <br /><br />
+              Tout parcours commencé d'ici-là devra donc être complété avant fin février. Soyez rassurés : Une nouvelle version de cette formation en ligne est en préparation et viendra lui succéder. Les contenus de la version actuelle du MOOC sont accessibles gratuitement au format SCORM pour les entités disposant d'un Learning management système (LMS) sur demande à l'adresse suivante : <a href="mailto:secnumacademie@ssi.gouv.fr" className="underline" style={{ color: '#F4B066' }}>secnumacademie@ssi.gouv.fr</a>
             </p>
           </div>
         </div>
@@ -610,9 +611,9 @@ L'équipe SecNum Académie
                   </div>
                   
                   {/* Barre grise avec barre de progression */}
-                  <div className="relative bg-gray-400" style={{ height: '18px' }}>
+                  <div className="relative bg-[#808080]" style={{ height: '18px' }}>
                     <div 
-                      className="absolute top-0 left-0 h-full bg-[#F4B942] transition-all duration-500 ease-out"
+                      className="absolute top-0 left-0 h-full bg-[#3E8EF7] transition-all duration-500 ease-out"
                       style={{ width: `${module.score}%` }}
                     ></div>
                   </div>
