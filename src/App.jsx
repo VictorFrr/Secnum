@@ -573,23 +573,25 @@ L'équipe SecNum Académie
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        <div className="flex justify-end p-4">
+        {/* Barre du haut avec bouton déconnexion - 65px */}
+        <div className="h-[65px] bg-white shadow-md flex items-center justify-end px-6">
           <button
             onClick={handleLogout}
-            className="flex items-center space-x-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg shadow transition-colors border border-gray-200"
+            className="flex items-center justify-center w-10 h-10 hover:bg-gray-100 rounded-lg transition-colors"
+            title="Déconnexion"
           >
-            <img src="/icon/deconnexion.png" alt="Déconnexion" className="w-4 h-4" />
-            <span className="font-medium">Déconnexion</span>
+            <img src="/icon/deconnexion.png" alt="Déconnexion" className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6 mx-4">
-          <p className="text-sm text-gray-700 mb-2">
-            <strong>Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</strong>
-          </p>
-          <p className="text-sm text-gray-600">
-            Tout parcours commencé d'ici-là devra donc être complété avant fin février. Soyez rassurés : Une nouvelle version de cette formation en ligne est en préparation et viendra lui succéder. Les contenus de la version actuelle du MOOC sont accessibles gratuitement au format SCORM pour les entités disposant d'un Learning management système (LMS) sur demande à l'adresse suivante : <a href="mailto:secnumacademie@ssi.gouv.fr" className="text-blue-600 underline">secnumacademie@ssi.gouv.fr</a>
-          </p>
+        {/* Barre d'avertissement - 137px */}
+        <div className="h-[137px] bg-white shadow-md flex items-center px-10">
+          <div className="max-w-[calc(100%-361px)]">
+            <p className="text-sm text-gray-700">
+              <strong className="font-extrabold text-gray-900">Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</strong>
+              {' '}Tout parcours commencé d'ici-là devra donc être complété avant fin février. Soyez rassurés : Une nouvelle version de cette formation en ligne est en préparation et viendra lui succéder. Les contenus de la version actuelle du MOOC sont accessibles gratuitement au format SCORM pour les entités disposant d'un Learning management système (LMS) sur demande à l'adresse suivante : <a href="mailto:secnumacademie@ssi.gouv.fr" className="underline" style={{ color: '#F4B066' }}>secnumacademie@ssi.gouv.fr</a>
+            </p>
+          </div>
         </div>
 
         <div className="px-8 pb-8">
