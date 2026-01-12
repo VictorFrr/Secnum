@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Home, Book, FileText, User, HelpCircle, Clock, Star, Globe, Shield, Wifi, Monitor, LogOut, Mail } from 'lucide-react';
+import { Home, Book, FileText, User, HelpCircle, Clock, Star, Globe, Shield, Wifi, Monitor, LogOut, Mail, ChevronRight } from 'lucide-react';
 
 const SecNumAcademy = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,12 +13,44 @@ const SecNumAcademy = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [forgotEmail, setForgotEmail] = useState('');
+  const [selectedModule, setSelectedModule] = useState(null);
   const [registerData, setRegisterData] = useState({
     username: '',
     email: '',
     password: '',
     confirmPassword: ''
   });
+
+  const moduleUnits = {
+    1: [
+      { id: 1, title: "Un monde numérique hyper-connecté" },
+      { id: 2, title: "Un monde à hauts risques" },
+      { id: 3, title: "Les acteurs de la cybersécurité" },
+      { id: 4, title: "Protéger le cyberespace" },
+      { id: 5, title: "Les règles d'or de la sécurité" }
+    ],
+    2: [
+      { id: 1, title: "Principes de l'authentification" },
+      { id: 2, title: "Attaques sur les mots de passe" },
+      { id: 3, title: "Sécuriser ses mots de passe" },
+      { id: 4, title: "Gérer ses mots de passe" },
+      { id: 5, title: "Notions de cryptographie" }
+    ],
+    3: [
+      { id: 1, title: "Internet : de quoi s'agit-il ?" },
+      { id: 2, title: "Les fichiers en provenance d'Internet" },
+      { id: 3, title: "La navigation web" },
+      { id: 4, title: "La messagerie électronique" },
+      { id: 5, title: "L'envers du décor d'une connexion Web" }
+    ],
+    4: [
+      { id: 1, title: "Applications et mises à jour" },
+      { id: 2, title: "Options de configuration de base" },
+      { id: 3, title: "Configurations complémentaires" },
+      { id: 4, title: "Sécurité des périphériques amovibles" },
+      { id: 5, title: "Séparation des usages" }
+    ]
+  };
 
   useEffect(() => {
     loadUsers();
@@ -223,6 +255,7 @@ L'équipe SecNum Académie
     setUsername('');
     setPassword('');
     setRememberMe(false);
+    setSelectedModule(null);
     localStorage.removeItem('secnum-current-user');
   };
 
@@ -291,7 +324,7 @@ L'équipe SecNum Académie
               <img src="/img/logo-secnum.png" alt="SecNum Académie" className="h-32 mx-auto" />
             </div>
 
-            <div className="w-full max-w-md bg-white/98 rounded-2xl shadow-2xl p-8">
+            <div className="w-full max-w-md bg-white/98 rounded-2xl shadow-md p-8">
               <div className="flex items-center justify-center mb-6">
                 <Mail size={40} className="text-[#003d5c] mr-3" />
                 <h2 className="text-2xl font-bold text-gray-800">Mot de passe oublié</h2>
@@ -364,7 +397,7 @@ L'équipe SecNum Académie
               <img src="/img/logo-secnum.png" alt="SecNum Académie" className="h-32 mx-auto" />
             </div>
 
-            <div className="w-full max-w-md bg-white/98 rounded-2xl shadow-2xl p-8">
+            <div className="w-full max-w-md bg-white/98 rounded-2xl shadow-md p-8">
               <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">Créer un compte</h2>
               
               {error && (
@@ -528,10 +561,134 @@ L'équipe SecNum Académie
     );
   }
 
+  if (selectedModule) {
+    const module = modules.find(m => m.id === selectedModule);
+    const units = moduleUnits[selectedModule];
+
+    return (
+      <div className="flex h-screen bg-gray-100">
+        <div className="w-64 bg-[#00416B] text-white flex flex-col">
+          <div className="py-3 px-4 bg-[#003051] flex items-center justify-center shadow-md">
+            <img src="/img/logo-secnum-white.png" alt="SecNum Académie" className="h-12 w-auto object-contain" />
+          </div>
+
+          <nav className="flex-1 p-4">
+            <ul className="space-y-2">
+              <li>
+                <a href="#" onClick={() => setSelectedModule(null)} className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
+                  <img src="/icon/house.png" alt="Accueil" className="w-5 h-5 flex-shrink-0 object-contain" />
+                  <span className="font-bold">Accueil</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
+                  <img src="/icon/ressources.png" alt="Ressources" className="w-5 h-5 flex-shrink-0 object-contain" />
+                  <span className="font-bold">Mes ressources</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
+                  <img src="/icon/attestation.png" alt="Attestation" className="w-5 h-5 flex-shrink-0 object-contain" />
+                  <span className="font-bold">Mon attestation</span>
+                </a>
+              </li>
+              <li>
+                <a href="#" className="flex items-center space-x-3 p-3 rounded hover:bg-[#003051] transition">
+                  <img src="/icon/accueil.png" alt="Profil" className="w-5 h-5 flex-shrink-0 object-contain" />
+                  <span className="font-bold">Mon profil</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <a href="#" className="h-[75px] px-6 bg-[#003051] hover:bg-[#002540] transition-colors cursor-pointer flex items-center justify-center shadow-md">
+            <div className="flex items-center space-x-3">
+              <HelpCircle size={20} className="flex-shrink-0" style={{ color: '#4289DB' }} />
+              <span className="font-bold" style={{ color: '#4289DB' }}>Aide</span>
+            </div>
+          </a>
+        </div>
+
+        <div className="flex-1 overflow-y-auto">
+          <div className="flex justify-end p-4">
+            <button
+              onClick={handleLogout}
+              className="flex items-center space-x-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg shadow transition-colors border border-gray-200"
+            >
+              <img src="/icon/deconnexion.png" alt="Déconnexion" className="w-4 h-4" />
+              <span className="font-medium">Déconnexion</span>
+            </button>
+          </div>
+
+          <div className="px-8">
+            <h1 className="text-2xl font-bold text-gray-800 mb-9">Module {selectedModule} : {module.title}</h1>
+            
+            <button
+              onClick={() => setSelectedModule(null)}
+              className="flex items-center space-x-2 mb-6 text-gray-700 hover:text-gray-900 font-bold"
+              style={{ marginLeft: '30px', width: '96px', height: '37px' }}
+            >
+              <ChevronRight size={16} className="transform rotate-180" />
+              <span>Accueil</span>
+            </button>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12" style={{ marginTop: '24px' }}>
+              {units.map((unit) => (
+                <div key={unit.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group" style={{ width: '620px' }}>
+                  <div className="relative" style={{ height: '207px' }}>
+                    <img 
+                      src={`/module/Module${selectedModule}_Unit${unit.id}.png`} 
+                      alt={unit.title}
+                      className="w-full h-full object-cover group-hover:brightness-50 transition-all duration-300"
+                    />
+                  </div>
+                  
+                  <div className="relative bg-gray-400" style={{ height: '18px' }}>
+                    <div 
+                      className="absolute top-0 left-0 h-full bg-[#F4B942] transition-all duration-500"
+                      style={{ width: `0%` }}
+                    ></div>
+                  </div>
+
+                  <div className="bg-white" style={{ height: '265px', paddingLeft: '12px', paddingRight: '12px', paddingTop: '18px' }}>
+                    <div className="text-sm text-gray-500 mb-2 font-bold">UNITÉ {unit.id}</div>
+                    <h3 className="text-xl font-bold text-gray-800" style={{ marginTop: '37px', marginBottom: '40px' }}>{unit.title}</h3>
+                    
+                    <div className="flex gap-3" style={{ marginTop: '38px' }}>
+                      <button 
+                        className="bg-[#2FAC66] hover:bg-[#1A6038] text-white font-bold rounded-full transition-colors"
+                        style={{ width: '281px', height: '34px' }}
+                      >
+                        Commencer
+                      </button>
+                      <button 
+                        className="bg-[#F5B607] hover:bg-[#8F610E] text-white font-bold rounded-full transition-colors"
+                        style={{ width: '281px', height: '34px' }}
+                      >
+                        S'évaluer
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="px-8 py-4 text-sm text-gray-600 border-t mt-8">
+            <div className="flex justify-between items-center">
+              <span>© 2026 ANSSI</span>
+              <a href="#" className="text-blue-600 hover:underline">Mentions légales</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-screen bg-gray-100">
       <div className="w-64 bg-[#00416B] text-white flex flex-col">
-        <div className="py-3 px-4 bg-[#003051] flex items-center justify-center">
+        <div className="py-3 px-4 bg-[#003051] flex items-center justify-center shadow-md">
           <img src="/img/logo-secnum-white.png" alt="SecNum Académie" className="h-12 w-auto object-contain" />
         </div>
 
@@ -564,7 +721,7 @@ L'équipe SecNum Académie
           </ul>
         </nav>
 
-        <a href="#" className="h-[75px] px-6 bg-[#003051] hover:bg-[#002540] transition-colors cursor-pointer flex items-center justify-center">
+        <a href="#" className="h-[75px] px-6 bg-[#003051] hover:bg-[#002540] transition-colors cursor-pointer flex items-center justify-center shadow-md">
           <div className="flex items-center space-x-3">
             <HelpCircle size={20} className="flex-shrink-0" style={{ color: '#4289DB' }} />
             <span className="font-bold" style={{ color: '#4289DB' }}>Aide</span>
@@ -573,61 +730,62 @@ L'équipe SecNum Académie
       </div>
 
       <div className="flex-1 overflow-y-auto">
-        {/* Barre du haut avec bouton déconnexion - 65px */}
-        <div className="h-[65px] bg-white flex items-center justify-end px-6" style={{ boxShadow: '0 2px 6px rgba(0,0,0,0.15)', position: 'relative', zIndex: 10 }}>
+        <div className="flex justify-end p-4" style={{ marginBottom: '36px' }}>
           <button
             onClick={handleLogout}
-            className="flex items-center justify-center w-10 h-10 hover:bg-gray-100 rounded-lg transition-colors"
-            title="Déconnexion"
+            className="flex items-center space-x-2 bg-white hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg shadow-sm transition-colors border border-gray-200"
           >
-            <img src="/icon/deconnexion.png" alt="Déconnexion" className="w-5 h-5" />
+            <img src="/icon/deconnexion.png" alt="Déconnexion" className="w-4 h-4" />
+            <span className="font-bold">Déconnexion</span>
           </button>
         </div>
 
-        {/* Barre d'avertissement - 137px */}
-        <div className="h-[137px] bg-white flex items-center" style={{ position: 'relative', zIndex: 5, paddingLeft: '40px', paddingRight: '321px' }}>
-          <div className="w-full">
-            <p className="text-sm text-gray-700 leading-relaxed">
-              <span className="font-extrabold text-gray-900">Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</span>
-              <br />
-              Tout parcours commencé d'ici-là devra donc être complété avant fin février. Soyez rassurés : Une nouvelle version de cette formation en ligne est en préparation et viendra lui succéder. Les contenus de la version actuelle du MOOC sont accessibles gratuitement au format SCORM pour les entités disposant d'un Learning management système (LMS) sur demande à l'adresse suivante : <a href="mailto:secnumacademie@ssi.gouv.fr" className="underline" style={{ color: '#F4B066' }}>secnumacademie@ssi.gouv.fr</a>
-            </p>
-          </div>
+        <div className="bg-blue-50 border-l-4 border-blue-500 p-6 mb-6 mx-4">
+          <p className="text-sm text-gray-700 mb-2">
+            <strong>Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</strong>
+          </p>
+          <p className="text-sm text-gray-600">
+            Tout parcours commencé d'ici-là devra donc être complété avant fin février. Soyez rassurés : Une nouvelle version de cette formation en ligne est en préparation et viendra lui succéder. Les contenus de la version actuelle du MOOC sont accessibles gratuitement au format SCORM pour les entités disposant d'un Learning management système (LMS) sur demande à l'adresse suivante : <a href="mailto:secnumacademie@ssi.gouv.fr" className="text-blue-600 underline">secnumacademie@ssi.gouv.fr</a>
+          </p>
         </div>
 
-        <div style={{ marginLeft: '60px', marginRight: '314px' }}>
-          <h2 className="text-3xl font-bold text-gray-800" style={{ marginBottom: '100px' }}>MODULES</h2>
+        <div className="px-8 pb-8">
+          <h2 className="text-3xl font-bold text-gray-800" style={{ marginTop: '36px', marginBottom: '51px' }}>MODULES</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '30px' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
             {modules.map((module) => {
               return (
-                <div key={module.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow" style={{ width: '620px' }}>
+                <div 
+                  key={module.id} 
+                  className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-sm transition-shadow group cursor-pointer" 
+                  style={{ width: '620px' }}
+                  onClick={() => setSelectedModule(module.id)}
+                >
                   <div className="relative" style={{ height: '207px' }}>
                     <img 
                       src={`/module/Module${module.id}.png`} 
                       alt={module.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:brightness-[0.4] transition-all duration-300"
                     />
                   </div>
                   
-                  {/* Barre grise avec barre de progression */}
-                  <div className="relative bg-[#808080]" style={{ height: '18px' }}>
+                  <div className="relative bg-gray-400" style={{ height: '18px' }}>
                     <div 
-                      className="absolute top-0 left-0 h-full bg-[#3E8EF7] transition-all duration-500 ease-out"
+                      className="absolute top-0 left-0 h-full bg-[#F4B942] transition-all duration-500"
                       style={{ width: `${module.score}%` }}
                     ></div>
                   </div>
 
-                  <div className="p-6 bg-white" style={{ height: '265px' }}>
-                    <div className="text-sm text-gray-500 mb-2 font-bold">MODULE {module.id}</div>
-                    <h3 className="text-xl font-bold text-gray-800 mb-4">{module.title}</h3>
+                  <div className="bg-white" style={{ height: '265px', paddingLeft: '12px', paddingRight: '12px', paddingTop: '18px' }}>
+                    <div className="text-sm text-gray-400 font-bold">MODULE {module.id}</div>
+                    <h3 className="text-xl font-bold text-gray-800" style={{ marginTop: '37px' }}>{module.title}</h3>
                     
-                    <div className="flex items-center justify-between mb-4 text-sm">
+                    <div className="flex items-center justify-between text-sm" style={{ marginTop: '40px' }}>
                       <div className="flex items-center text-gray-600">
                         <Clock size={16} className="mr-2" />
                         <span className="font-bold">Temps passé : {formatTime(module.timeSpent)}</span>
                       </div>
-                      <div className="flex items-center">
+                      <div className="flex items-center" style={{ marginLeft: '130px' }}>
                         <Star size={16} className={`mr-2 ${module.score > 0 ? 'text-[#F4B942]' : 'text-gray-400'}`} fill={module.score > 0 ? '#F4B942' : 'none'} />
                         <span className={`font-bold ${module.score > 0 ? 'text-red-600' : 'text-gray-600'}`}>
                           Score : {module.score}%
@@ -636,7 +794,8 @@ L'équipe SecNum Académie
                     </div>
 
                     <button 
-                      className="w-full bg-[#F4B942] hover:bg-[#E5A832] text-white font-bold py-3 rounded-full transition-colors"
+                      className="bg-[#F4B942] hover:bg-[#E5A832] text-white font-bold rounded-full transition-colors group-hover:brightness-[0.4]"
+                      style={{ width: '280px', height: '37px', marginTop: '38px' }}
                     >
                       Afficher les unités
                     </button>
