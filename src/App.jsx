@@ -574,7 +574,7 @@ L'équipe SecNum Académie
 
       <div className="flex-1 overflow-y-auto">
         {/* Barre du haut avec bouton déconnexion - 65px */}
-        <div className="h-[65px] bg-white flex items-center justify-end px-6" style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+        <div className="h-[65px] bg-white flex items-center justify-end px-6" style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.25)' }}>
           <button
             onClick={handleLogout}
             className="flex items-center justify-center w-10 h-10 hover:bg-gray-100 rounded-lg transition-colors"
@@ -585,8 +585,8 @@ L'équipe SecNum Académie
         </div>
 
         {/* Barre d'avertissement - 137px */}
-        <div className="h-[137px] bg-white flex items-center px-10 mb-6" style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-          <div className="max-w-[calc(100%-361px)]">
+        <div className="h-[137px] bg-white flex items-center px-10 mb-6" style={{ boxShadow: '0 4px 8px rgba(0,0,0,0.25)' }}>
+          <div className="max-w-[calc(100%-361px)] mt-4">
             <p className="text-sm text-gray-700 leading-relaxed">
               <span className="font-extrabold text-gray-900">Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.</span>
               <br /><br />
@@ -595,10 +595,10 @@ L'équipe SecNum Académie
           </div>
         </div>
 
-        <div className="px-8 pb-8">
-          <h2 className="text-3xl font-bold text-gray-800 mb-8">MODULES</h2>
+        <div style={{ marginLeft: '60px', marginRight: '314px' }}>
+          <h2 className="text-3xl font-bold text-gray-800" style={{ marginBottom: '100px' }}>MODULES</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: '30px' }}>
             {modules.map((module) => {
               return (
                 <div key={module.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow" style={{ width: '620px' }}>
