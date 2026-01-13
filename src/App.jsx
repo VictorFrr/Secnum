@@ -196,8 +196,8 @@ const SecNumAcademy = () => {
                   
                   <div className="relative bg-gray-400" style={{ height: '18px' }}>
                     <div 
-                      className={`absolute top-0 left-0 h-full transition-all duration-500 ${unit.score === 100 ? 'bg-[#2FAC66]' : 'bg-[#F4B942]'}`}
-                      style={{ width: `${unit.score}%` }}
+                      className="absolute top-0 left-0 h-full transition-all duration-500 bg-[#2FAC66]"
+                      style={{ width: `100%` }}
                     ></div>
                   </div>
 
@@ -211,8 +211,8 @@ const SecNumAcademy = () => {
                         <span className="font-bold">Temps passé : {formatTime(unit.timeSpent)}</span>
                       </div>
                       <div className="flex items-center">
-                        <Star size={16} className={`mr-2 ${unit.score > 0 ? 'text-[#F4B942]' : 'text-gray-400'}`} fill={unit.score > 0 ? '#F4B942' : 'none'} />
-                        <span className={`font-bold ${unit.score >= 80 ? 'text-green-600' : 'text-red-600'}`}>
+                        <Star size={16} className="mr-2 text-[#F4B942]" fill="#F4B942" />
+                        <span className="font-bold text-black">
                           Score : {unit.score}%
                         </span>
                       </div>
@@ -226,7 +226,7 @@ const SecNumAcademy = () => {
                         Commencer
                       </button>
                       <button 
-                        className="bg-[#F5B607] hover:bg-[#8F610E] text-white font-bold rounded-full transition-colors"
+                        className={`${unit.score >= 80 ? 'bg-[#2FAC66] hover:bg-[#1A6038]' : 'bg-[#F5B607] hover:bg-[#8F610E]'} text-white font-bold rounded-full transition-colors`}
                         style={{ width: '281px', height: '34px' }}
                       >
                         S'évaluer
@@ -295,12 +295,12 @@ const SecNumAcademy = () => {
 
       <div className="flex-1 overflow-y-auto bg-white">
         {/* Barre blanche avec déconnexion */}
-        <div className="bg-white border-b border-gray-200 px-8 py-4 flex justify-end">
+        <div className="bg-white px-8 py-4 flex justify-end">
           <button
             onClick={handleLogout}
-            className="flex items-center justify-center w-10 h-10 bg-white hover:bg-gray-100 rounded-lg shadow-sm transition-colors border border-gray-200"
+            className="hover:opacity-70 transition-opacity"
           >
-            <img src="/icon/deconnexion.png" alt="Déconnexion" className="w-5 h-5" />
+            <img src="/icon/deconnexion.png" alt="Déconnexion" className="w-6 h-6" />
           </button>
         </div>
 
@@ -310,7 +310,7 @@ const SecNumAcademy = () => {
             Le MOOC de l'ANSSI SecNumacadémie ne sera plus disponible sur cette plateforme à partir du 28 février 2026.
           </p>
           <p className="text-sm text-gray-600 font-bold">
-            Tout parcours commencé d'ici-là devra donc être complété avant fin février. Les contenus sont accessibles au format SCORM sur demande : <a href="mailto:secnumacademie@ssi.gouv.fr" className="text-blue-600 underline">secnumacademie@ssi.gouv.fr</a>
+            Tout parcours commencé d'ici-là devra donc être complété avant fin février. Soyez rassurés : Une nouvelle version de cette formation en ligne est en préparation et viendra lui succéder. Les contenus de la version actuelle du MOOC sont accessibles gratuitement au format SCORM pour les entités disposant d'un Learning management système (LMS) sur demande à l'adresse suivante : <a href="mailto:secnumacademie@ssi.gouv.fr" className="text-blue-600 underline">secnumacademie@ssi.gouv.fr</a>
           </p>
         </div>
 
@@ -336,8 +336,8 @@ const SecNumAcademy = () => {
                   
                   <div className="relative bg-gray-400" style={{ height: '18px' }}>
                     <div 
-                      className={`absolute top-0 left-0 h-full transition-all duration-500 ${module.avgScore === 100 ? 'bg-[#2FAC66]' : 'bg-[#F4B942]'}`}
-                      style={{ width: `${module.avgScore}%` }}
+                      className="absolute top-0 left-0 h-full transition-all duration-500 bg-[#2FAC66]"
+                      style={{ width: `100%` }}
                     ></div>
                   </div>
 
@@ -351,8 +351,8 @@ const SecNumAcademy = () => {
                         <span className="font-bold">Temps passé : {formatTime(module.totalTime)}</span>
                       </div>
                       <div className="flex items-center">
-                        <Star size={16} className={`mr-2 ${module.avgScore > 0 ? 'text-[#F4B942]' : 'text-gray-400'}`} fill={module.avgScore > 0 ? '#F4B942' : 'none'} />
-                        <span className={`font-bold ${module.avgScore >= 80 ? 'text-green-600' : module.avgScore > 0 ? 'text-red-600' : 'text-gray-600'}`}>
+                        <Star size={16} className="mr-2 text-[#F4B942]" fill="#F4B942" />
+                        <span className="font-bold text-black">
                           Score : {module.avgScore}%
                         </span>
                       </div>
